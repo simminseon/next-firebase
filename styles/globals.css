@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Layout */
+  html {
+    @apply h-full;
+  }
+  body {
+    @apply h-full font-sans text-base font-normal leading-normal text-gray-600;
+  }
+}
+
+.input-comm {
+  @apply w-full h-40 px-12 text-sm tracking-tight border rounded-sm border-slate-200 placeholder:text-gray-400 focus:outline-none focus:border-gray-600;
+}
+
+.input-comm.error {
+  @apply border-red focus:border-red;
+}
