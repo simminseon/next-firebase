@@ -6,13 +6,7 @@ import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '@/firebase';
-import {
-  InputField,
-  Input,
-  Label,
-  Button,
-  ErrorMessage,
-} from '@/components/common/';
+import { InputField, Input, Label, Button, ErrorMessage } from '@/components/common/';
 import { TLoginPhoneNumber } from '@/types/auth.type';
 
 function LoginPhoneNumber() {
@@ -56,12 +50,12 @@ function LoginPhoneNumber() {
       const confirmationResult = window.confirmationResult;
       confirmationResult
         .confirm(optCodeNumber)
-        .then((result) => {
+        .then((result: any) => {
           const user = result.user;
 
           setIsNextStep(true);
         })
-        .catch((error) => {
+        .catch((error: any) => {
           // 에러 코드 적기
           console.log('에러', error);
         });
@@ -75,9 +69,7 @@ function LoginPhoneNumber() {
     );
     if (phoneNumberInp) {
       const countryCode = '+82';
-      const phoneNumberFormat = phoneNumberInp
-        .toString()
-        .replace(/[^0-9]/g, '');
+      const phoneNumberFormat = phoneNumberInp.toString().replace(/[^0-9]/g, '');
       const appVerifier = window.recaptchaVerifier;
 
       signInWithPhoneNumber(auth, countryCode + phoneNumberFormat, appVerifier)
@@ -148,9 +140,7 @@ function LoginPhoneNumber() {
               </Button>
             </InputField.SplitShrink>
           </InputField.Split>
-          {errors.phoneNumber && (
-            <ErrorMessage>{errors.phoneNumber.message}</ErrorMessage>
-          )}
+          {errors.phoneNumber && <ErrorMessage>{errors.phoneNumber.message}</ErrorMessage>}
           {test}
         </InputField>
 
