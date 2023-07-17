@@ -3,14 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import {
-  Button,
-  InputField,
-  Label,
-  Input,
-  ErrorMessage,
-  Loading,
-} from '@/components/common';
+import { Button, InputField, Label, Input, ErrorMessage, Loading } from '@/components/common';
 import { TLogin } from '@/types/auth.type';
 import { Errors } from '@/types/error.type';
 import { useError } from '@/hooks/useError';
@@ -57,9 +50,7 @@ function Login() {
                 },
               })}
             />
-            {errors.email && (
-              <ErrorMessage>{errors.email.message}</ErrorMessage>
-            )}
+            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </InputField>
 
           <InputField>
@@ -77,9 +68,7 @@ function Login() {
                 },
               })}
             />
-            {errors.password && (
-              <ErrorMessage>{errors.password.message}</ErrorMessage>
-            )}
+            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </InputField>
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <Button type="submit" className="mt-30">
@@ -95,10 +84,10 @@ function Login() {
         <Link href="/login/phoneNumber" className="px-10 py-5 text-gray-500">
           휴대폰 인증
         </Link>
-        <span className="text-gray-500">|</span>
+        {/* <span className="text-gray-500">|</span>
         <Link href="/login/oAuth" className="px-10 py-5 text-gray-500">
           구글 인증
-        </Link>
+        </Link> */}
       </div>
       {isLoading && <Loading />}
     </main>

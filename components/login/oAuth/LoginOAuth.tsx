@@ -1,11 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import {
-  GoogleAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
-  signOut,
-} from 'firebase/auth';
+import { GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut } from 'firebase/auth';
 import { auth } from '@/firebase';
 import { Button, Loading } from '@/components/common';
 
@@ -27,7 +22,7 @@ function LoginOAuth() {
     setIsLoading(true);
     getRedirectResult(auth)
       .then((result) => {
-        if (result.user) {
+        if (result) {
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential?.accessToken;
           const user = result.user;

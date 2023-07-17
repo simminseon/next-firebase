@@ -11,20 +11,8 @@ module.exports = {
     container: {
       center: true,
       padding: '20px',
-      // screens: {
-      //   sm: '100%',
-      //   md: '100%',
-      //   lg: '1024px',
-      //   xl: '1280px',
-      //   '2xl': '1536px',
-      // },
     },
-    // screens: {
-    //   tablet: '768px',
-    //   laptop: '1024px',
-    //   desktop: '1280px',
-    //   mobileTablet: { max: '1023px' },
-    // },
+
     colors: {
       transparent: 'transparent',
       primary: '#FFA3AE',

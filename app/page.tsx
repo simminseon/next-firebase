@@ -16,6 +16,7 @@ function Home() {
   const phoneUser = useAppSelector((state) => state.phoneNumberAuth);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const { imageUrl, imageLoading } = useImageUrl(user.user.id);
 
   useEffect(() => {
@@ -23,9 +24,7 @@ function Home() {
       setIsLoading(false);
       if (user) {
         if (user.phoneNumber) {
-          dispatch(
-            phoneNumberLogIn({ id: user.uid, phoneNumber: user.phoneNumber })
-          );
+          dispatch(phoneNumberLogIn({ id: user.uid, phoneNumber: user.phoneNumber }));
         } else {
           const users = await fetchUser(user.uid);
           console.log('여기', users);
@@ -33,8 +32,10 @@ function Home() {
             dispatch(logIn(users[0]));
           }
         }
+        setIsLogin(true);
       } else {
         router.push('/login');
+        setIsLogin(false);
       }
     });
 
@@ -53,7 +54,7 @@ function Home() {
     return <Loading />;
   }
 
-  return (
+  return isLogin ? (
     <div className="container">
       로그인 정보
       {user.isAuth && (
@@ -63,10 +64,7 @@ function Home() {
           <div>이메일: {user.user.email}</div>
           <div>핸드폰번호: {user.user.phoneNumber}</div>
           <div>활동지역: {user.user.region}</div>
-          <div>
-            프로필:{' '}
-            {imageLoading ? <Loading /> : imageUrl && <img src={imageUrl} />}
-          </div>
+          <div>프로필: {imageLoading ? <Loading /> : imageUrl && <img src={imageUrl} />}</div>
         </div>
       )}
       {phoneUser.isAuth && (
@@ -78,6 +76,6 @@ function Home() {
         로그아웃
       </Button>
     </div>
-  );
+  ) : null;
 }
 export default Home;
